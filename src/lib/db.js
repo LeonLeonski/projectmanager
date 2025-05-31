@@ -125,11 +125,13 @@ async function createProject(project) {
 
 
 async function createTask(task) {
+  console.log("task: " + task);
   task.title = task.title;
   task.description = task.description || "";
   task.impactLevel = task.impactLevel || "mittel";
   task.completed = !!task.completed;
   task.dueDate = task.dueDate ? new Date(task.dueDate) : null;
+  task.projectId = task.projectId 
   task.createdAt = task.createdAt || new Date();
 
   try {
@@ -164,6 +166,24 @@ async function deleteProject(id) {
 }
 
 
+async function deleteTask(id) {
+  try {
+    const collection = db.collection("tasks");
+    const query = { _id: new ObjectId(id) };
+    const result = await collection.deleteOne(query);
+
+    if (result.deletedCount === 0) {
+      console.log("No task with id " + id);
+    } else {
+      console.log("Task with id " + id + " has been successfully deleted.");
+      return id;
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+  return null;
+}
+
 
 async function updateTask(id, data) {
   try {
@@ -189,5 +209,6 @@ export default {
   deleteProject,
   getTasksByProjectId,
   getTask,
-  updateTask
+  updateTask,
+  deleteTask
 };

@@ -11,7 +11,5 @@
     </div>
   {/each}
 </div>
-<div class="mt-4">
-  <a href="/tasks/create" class="btn btn-primary">Add New Task</a>
-</div>
+
 
