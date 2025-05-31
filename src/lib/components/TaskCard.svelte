@@ -20,16 +20,16 @@
     </p>
 
     <p class="mb-1">
-      <strong>Fällig am:</strong>
+      <strong>Due Date:</strong>
       {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'Kein Datum'}
     </p>
 
     <p>
       <strong>Status:</strong>
       {#if task.completed}
-        <span class="badge bg-success">Erledigt</span>
+        <span class="badge bg-success">Done</span>
       {:else}
-        <span class="badge bg-warning text-dark">Offen</span>
+        <span class="badge bg-warning text-dark">Open</span>
       {/if}
     </p>
   </div>
